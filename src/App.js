@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from 'login/Home';
+import Login from 'login/Login';
+import Sign from 'login/Sign';
+import CreateProject from 'project/utilis/CreateProject';
+import Project from 'project/utilis/Project';
+import ProjectDetail from 'project/utilis/ProjectDetail';
+import ProjectManager from 'project/utilis/ProjectManager';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter >
+      <Routes>
+      
+        <Route element={<Home />}>
+          <Route index path='/' element={<Login />} />
+          <Route path='/sign' element={<Sign />} />
+        </Route>
+        <Route  element={<ProjectManager />} >
+          <Route index path='/projectmanager' element={<Project />} />
+          <Route index path='/projectmanager/detail/:id' element={<ProjectDetail />} />
+          <Route path='/projectmanager/createproject' element={<CreateProject />} />
+          
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
